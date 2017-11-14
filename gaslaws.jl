@@ -1,4 +1,5 @@
 import Base.+, Base.-, Base.*, Base.convert
+export R, gas_volume, moles, gas_moles, gas_mass, pascal, bar
 
 struct GasConstant
     value::Float64

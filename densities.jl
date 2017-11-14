@@ -1,17 +1,19 @@
+export gas_mass_CO2, gas_mass_N2, gas_mass_O2, earth_gas_mass
+
 # Grams of  weight for one mole of substance
-CO2mass = 44.01
-O2mass = 32.0
-N2mass = 28.02
-AirMass = 29.0  # Molecular weight of air. This must be artificial
-Helium = 4.02
-Methane = 16.043
-H2Omass = 18.016
+const CO2mass = 44.01
+const O2mass = 32.0
+const N2mass = 28.02
+const AirMass = 29.0  # Molecular weight of air. This must be artificial
+const Helium = 4.02
+const Methane = 16.043
+const H2Omass = 18.016
 
-AirDensity = 1.205 # kg/m3
-CO2Density = 1.842 # kg/m3
+const AirDensity = 1.205 # kg/m3
+const CO2Density = 1.842 # kg/m3
 
-BiglowB330Space = 330.0 # m3, diameter 6.7, Length 13.7. 0.46m hull thickness
-BiglowB330Mass = 15000 # kg
+const BiglowB330Space = 330.0 # m3, diameter 6.7, Length 13.7. 0.46m hull thickness
+const BiglowB330Mass = 15000 # kg
 # density of air (1.29kg/m3)
 # 1290g/m3
 # density of CO2 1.98 kg/m3

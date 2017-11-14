@@ -1,5 +1,9 @@
 module Volume
 
+export  sphere_volume, ellipsoid_volume, cylinder_volume, 
+        cylinder_area , triangle_area, circle_area, rectangle_area,
+        oblate_spheroid_area, prolate_spheroid_area
+
 "Volume of sphere with radius `r`"
 sphere_volume(r) = (4/3)*π*r^3
 

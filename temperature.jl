@@ -1,4 +1,5 @@
 import Base: +, -, *, convert, promote_rule
+export Temperature, Kelvin, Fahrenheit, Celsius
 
 abstract type Temperature end
 
