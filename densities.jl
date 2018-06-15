@@ -1,31 +1,36 @@
-export gas_mass_CO2, gas_mass_N2, gas_mass_O2, earth_gas_mass
+export CO2Mass, O2Mass, N2Mass, AirMass, HeliumMass, MethaneMass, H2OMass,
+       AirDensity, CO2Density, SteelDensity, NylonDensity, PolypropyleneDensity,
+       AluminiumDensity, IceDensity, KevlarDensity, CarbonfibreCompositeDensity,
+       MylarDensity, WaterDensity
 
-# Grams of  weight for one mole of substance
-const CO2mass = 44.01
-const O2mass = 32.0
-const N2mass = 28.02
-const AirMass = 29.0  # Molecular weight of air. This must be artificial
-const Helium = 4.02
-const Methane = 16.043
-const H2Omass = 18.016
+# mass in kg of 1 mole of substance
+const CO2Mass = 0.04401  # kg/mole
+const O2Mass = 0.0320
+const N2Mass = 0.02802
+const AirMass = 0.0290  # Molecular weight of air. This must be artificial
+const HeliumMass = 0.00402
+const HydrogenMass = 0.00202
+const MethaneMass = 0.016043
+const H2OMass = 0.018016
 
 const AirDensity = 1.205 # kg/m3
 const CO2Density = 1.842 # kg/m3
 
 const BiglowB330Space = 330.0 # m3, diameter 6.7, Length 13.7. 0.46m hull thickness
 const BiglowB330Mass = 15000 # kg
-# density of air (1.29kg/m3)
-# 1290g/m3
-# density of CO2 1.98 kg/m3
-# 1980g/m3
-# density of Steel
-# 7800 kg/m3
-# density of nylon 1130
-# density of polypropylene 900
-# density of aluminum 2700
-# Ice 970
-# Kevlar 1440. tensile strength of 3620 MPa
-# Density of water 1000. Relative density is density relative to water.
+
+const SteelDensity = 7800 # kg/m3
+const NylonDensity = 1130
+const PolypropyleneDensity = 900
+const AluminiumDensity = 2700
+const IceDensity = 970
+const KevlarDensity = 1440
+const CarbonfibreCompositeDensity = 1600 # Not sure if this is right. Check it
+const MylarDensity = 1390                # Polyester film. Mylar is the DuPont trade name
+const WaterDensity = 1000
+
+# 1 micron is 1/1e6 meter. Micron is often used to describe thickness of polymer films
+# used as envelope for airships
 
 gas_mass_CO2(P, V, celsius::Celsius) = gas_mass(P, V, celsius, CO2mass)
 gas_mass_N2(P, V, celsius::Celsius) = gas_mass(P, V, celsius, N2mass)

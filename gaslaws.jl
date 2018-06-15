@@ -31,7 +31,7 @@ Mass in grams of a gass of volume `V` temperature `celsius`, pressure `P` and ma
 of each molecule of gass is `molecular_mass`
 """
 gas_mass(P::Real, V::Real, T::Kelvin, molecular_mass::Real) = gas_moles(P, V, T) * molecular_mass
-gas_mass(P, V, T::Temperature, molecular_mass) = gas_mass(P, V, convert(Kelvin, T), molecular_mass)
+gas_mass(P::Real, V::Real, T::Temperature, molecular_mass::Real) = gas_mass(P, V, convert(Kelvin, T), molecular_mass)
 
 pascal(bar::Real) = bar*1e5
 bar(pascal::Real) = pascal/1e5

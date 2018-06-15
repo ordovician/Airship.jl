@@ -26,8 +26,11 @@ circle_area(r) = π*r^2
 rectangle_area(h, w) = h*w
 
 """
+    oblate_spheroid_area(a, b)
+    
 Area of an ellipsoid which is disc shaped. That is, it is made from rotating an ellipse
-around its minor axis.
+around its minor axis (shortest axis). 
+`a` is the semi-minor axis and `b` the semi-major axis. 
 """
 function oblate_spheroid_area(a, b)
     α = acos(a/b)
@@ -39,9 +42,11 @@ end
     prolate_spheroid_area(a, b)
     
 Area of an ellipsoid which is cigar shaped. That is, it is made from rotating an ellipse
-around its major axis.
+around its major axis. Major axis is the longest axis. 
+`a` is the semi-minor axis and `b` the semi-major axis.
 """
 function prolate_spheroid_area(a::Number, b::Number)
+    @assert b > a "b is the semi-major axis and must thus be longer than semi-minor axis a"
     α = acos(a/b)
     2π*(a^2 + a*b*α/sin(α))
 end
