@@ -1,4 +1,4 @@
-export oblate_spheroid_lift_earth, prolate_spheroid_lift_earth
+export oblate_spheroid_lift, prolate_spheroid_lift, sphere_lift
 
 import Volume
 
@@ -9,7 +9,8 @@ function lift(V, lift_gas_mass, displaced_gas_mas)
 end
 
 """
-Calcuate how many kg an airship with oblate spheroid can lift on earth 
+Calcuate how many kg an airship with oblate spheroid can lift on
+earth like pressure and temperature,
 if it has semi-minor axis `a`, semi-major axis `b` with an envelope of given
 `thickness` and `density`. Example:
 
@@ -18,16 +19,23 @@ if it has semi-minor axis `a`, semi-major axis `b` with an envelope of given
 Givens lift of airship with diameter 150 m, height 10 m encased in a mylar envelope
 1.5 mm thick.
 """
-function oblate_spheroid_lift_earth(a, c, thickness, density, liftgas = HeliumMass)
+function oblate_spheroid_lift(a, c, thickness, density, liftgas = HeliumMass, displaced_gas_mas = AirMass)
     V = Volume.ellipsoid_volume(a, a, c)
     A = Volume.oblate_spheroid_area(a, c)
-    l = lift(V, liftgas, AirMass)
+    l = lift(V, liftgas, displaced_gas_mas)
     l -  A*thickness*density
 end
 
-function prolate_spheroid_lift_earth(a, c, thickness, density, liftgas = HydrogenMass)
+function prolate_spheroid_lift(a, c, thickness, density, liftgas = HydrogenMass, displaced_gas_mas = AirMass)
     V = Volume.ellipsoid_volume(a, a, c)
     A = Volume.prolate_spheroid_area(a, c)
-    l = lift(V, liftgas, AirMass)
+    l = lift(V, liftgas, displaced_gas_mas)
+    l -  A*thickness*density
+end
+
+function sphere_lift(radius, thickness, density, liftgas = HeliumMass, displaced_gas_mas = AirMass)
+    V = Volume.sphere_volume(radius)
+    A = Volume.sphere_area(radius)
+    l = lift(V, liftgas, displaced_gas_mas)
     l -  A*thickness*density
 end
