@@ -68,13 +68,22 @@ function earth_vs_venus_lifts()
     a = height/2
     c = len/2
 
-    earth_lift = oblate_spheroid_lift.(a, c, envelope_thickness, MylarDensity, HydrogenMass, AirMass) / 1e6
-    methane    = oblate_spheroid_lift.(a, c, envelope_thickness, MylarDensity, MethaneMass, CO2Mass) / 1e6
-    ammonia    = oblate_spheroid_lift.(a, c, envelope_thickness, MylarDensity, AmmoniaMass, CO2Mass) / 1e6
-    oxygen     = oblate_spheroid_lift.(a, c, envelope_thickness, MylarDensity, O2Mass, CO2Mass) / 1e6
-    nitrogen   = oblate_spheroid_lift.(a, c, envelope_thickness, MylarDensity, N2Mass, CO2Mass) / 1e6
-    air        = oblate_spheroid_lift.(a, c, envelope_thickness, MylarDensity, AirMass, CO2Mass) / 1e6
+    function lift(liftgas, atmosphere)
+        oblate_spheroid_lift.(a, c,
+                              envelope_thickness,
+                              MylarDensity,
+                              liftgas,
+                              atmosphere) / 1e6
+    end
 
+    earth_lift = lift(H2Mass, AirMass)
+    methane    = lift(MethaneMass, CO2Mass)
+    ammonia    = lift(AmmoniaMass, CO2Mass)
+    oxygen     = lift(O2Mass, CO2Mass)
+    nitrogen   = lift(N2Mass, CO2Mass)
+    air        = lift(AirMass, CO2Mass)
+    silane     = lift(SilaneMass, CO2Mass)
+    
     M = hcat(len, earth_lift, methane, ammonia, oxygen, nitrogen)
     export_table(M)
 
@@ -87,6 +96,12 @@ function earth_vs_venus_lifts()
     export_table(hcat(len, earth_lift, ammonia))
     export_table(hcat(len, earth_lift, nitrogen))
     export_table(hcat(len, earth_lift, oxygen))
+
+    export_table(hcat(len, earth_lift, methane, oxygen))
+    
+    export_table(hcat(len, earth_lift, nitrogen, ammonia))
+    
+    export_table(hcat(len, earth_lift, methane, silane))
 end
 
 function earth_vs_venus_sphere_lifts()
@@ -96,7 +111,7 @@ function earth_vs_venus_sphere_lifts()
 
     radius = diameter/2
 
-    earth_lift = sphere_lift.(radius, envelope_thickness, MylarDensity, HydrogenMass, AirMass) / 1e3
+    earth_lift = sphere_lift.(radius, envelope_thickness, MylarDensity, H2Mass, AirMass) / 1e3
     venus_lift = sphere_lift.(radius, envelope_thickness, MylarDensity, AirMass, CO2Mass) / 1e3
 
     M = hcat(diameter, earth_lift, venus_lift)

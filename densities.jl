@@ -1,4 +1,5 @@
-export CO2Mass, O2Mass, N2Mass, AirMass, HeliumMass, MethaneMass, H2OMass,
+export CO2Mass, O2Mass, SilaneMass, N2Mass, H2Mass, 
+       AirMass, HeliumMass, MethaneMass, H2OMass, AmmoniaMass,
        AirDensity, CO2Density, SteelDensity, NylonDensity, PolypropyleneDensity,
        AluminiumDensity, IceDensity, KevlarDensity, CarbonfibreCompositeDensity,
        MylarDensity, WaterDensity
@@ -7,10 +8,11 @@ export CO2Mass, O2Mass, N2Mass, AirMass, HeliumMass, MethaneMass, H2OMass,
 const CO2Mass = 0.04401  # kg/mole
 const O2Mass = 0.0320
 const N2Mass = 0.02802
+const SilaneMass = 0.03212 # SiH₄
 const AmmoniaMass = 0.017
 const AirMass = 0.0290  # Molecular weight of air. This must be artificial
 const HeliumMass = 0.00402
-const HydrogenMass = 0.00202
+const H2Mass = 0.00202
 const MethaneMass = 0.016043
 const H2OMass = 0.018016
 
