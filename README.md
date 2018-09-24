@@ -14,3 +14,7 @@ This is also useful code to learn about defining your own physics units in Julia
 
        temperature = 3°C + 4°C
        
+## Installation
+Upgraded to work with the Julia 1.0 package manager. Get into package mode on the Julia command line using the ']' key.
+
+    pkg> add https://github.com/ordovician/Airship.jl

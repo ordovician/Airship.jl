@@ -1,5 +1,3 @@
-module Volume
-
 export  sphere_volume, ellipsoid_volume, cylinder_volume,
         sphere_area, cylinder_area , triangle_area, circle_area, rectangle_area,
         oblate_spheroid_area, prolate_spheroid_area
@@ -52,7 +50,4 @@ function prolate_spheroid_area(a::Number, b::Number)
     @assert b > a "b is the semi-major axis and must thus be longer than semi-minor axis a"
     α = acos(a/b)
     2π*(a^2 + a*b*α/sin(α))
-end
-
-
 end

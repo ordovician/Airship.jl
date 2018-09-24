@@ -1,9 +1,5 @@
-include("Airship.jl")
-
 using Airship
-using Volume
-
-# using Gadfly
+using DelimitedFiles
 
 const colors = ["red", "orange", "yellow", "green", "cyan", "blue", "purple"]
 const materials = [MylarDensity, CarbonfibreCompositeDensity, AluminiumDensity, SteelDensity]
@@ -39,14 +35,14 @@ const materials = [MylarDensity, CarbonfibreCompositeDensity, AluminiumDensity, 
 "Will copy matrix `M` to clipboard in a format which can be pasted into Apple Numbers"
 function export_table(M)
     io = IOBuffer()
-    writecsv(io, M)
+    writedlm(io, M, ',')
     s = String(take!(io))
     clipboard(s)
 end
 
 function generate_airship_calculation_for_numbers()
-    len = linspace(100, 400, 10)  # Lengths of airship where
-    height = len/3               # Make it disc shaped by having the height 1/3
+    len = range(100, stop = 400, length = 10)  # Lengths of airship where
+    height = len/3                             # Make it disc shaped by having the height 1/3
 
     envelope_thickness = 0.0015  # in meters
 
@@ -60,8 +56,8 @@ function generate_airship_calculation_for_numbers()
 end
 
 function earth_vs_venus_lifts()
-    len = linspace(200, 800, 10)  # Lengths of airship where
-    height = len/3               # Make it disc shaped by having the height 1/3
+    len = range(200, stop = 800, length = 10)  # Lengths of airship where
+    height = len/3                             # Make it disc shaped by having the height 1/3
 
     envelope_thickness = 0.0015  # in meters
 
@@ -105,7 +101,7 @@ function earth_vs_venus_lifts()
 end
 
 function earth_vs_venus_sphere_lifts()
-    diameter = linspace(600, 1400, 10)  # Lengths of airship where
+    diameter = range(600, stop = 1400, length = 10)  # Lengths of airship where
 
     envelope_thickness = 0.0015  # in meters
 
@@ -119,8 +115,12 @@ function earth_vs_venus_sphere_lifts()
     export_table(M)
 end
 
+"""
+Compare the growht of airship volume against the growth of airship length.
+Demonstrates volume grows much faster than lenght.
+"""
 function compare_area_volume_growth()
-    len = linspace(100, 400, 10)  # Lengths of airship where
+    len = range(100, stop = 400, length = 10)  # Lengths of airship where
     height = len/3               # Make it disc shaped by having the height 1/3
 
     c = len/2
@@ -132,6 +132,15 @@ function compare_area_volume_growth()
     export_table(M)
 end
 
+"""
+In this example we grow the thickness of the envelope and the volume proportional.
+So when the envelope thickness doubles, we double the length and height of airship.
+Likewise if we tripple the thickess, we tripple the length and height.
+
+This function will export a table comparing the growth of the volume of the
+envelope vs the growth of the airship. It demonstrates that airship volume
+grows faster, thus demonstrating the advantage of large airships.
+"""
 function compare_proportional_enveloped_thickness_growth()
     thickness = 1:12
     len = thickness*15
@@ -148,7 +157,7 @@ function compare_proportional_enveloped_thickness_growth()
     export_table(M)
 end
 
-#generate_airship_calculation_for_numbers()
+# Gadfly plottin
 #
 # for (i, m) in enumerate(materials)
 #     lifts = oblate_spheroid_lift.(height, len, 0.0015, m)

@@ -1,7 +1,5 @@
 export oblate_spheroid_lift, prolate_spheroid_lift, sphere_lift
 
-import Volume
-
 function lift(V, lift_gas_mass, displaced_gas_mas)
     T = Celsius(20)
     P = pascal(1)
@@ -20,22 +18,22 @@ Givens lift of airship with diameter 150 m, height 10 m encased in a mylar envel
 1.5 mm thick.
 """
 function oblate_spheroid_lift(a, c, thickness, density, liftgas = HeliumMass, displaced_gas_mas = AirMass)
-    V = Volume.ellipsoid_volume(a, a, c)
-    A = Volume.oblate_spheroid_area(a, c)
+    V = ellipsoid_volume(a, a, c)
+    A = oblate_spheroid_area(a, c)
     l = lift(V, liftgas, displaced_gas_mas)
     l -  A*thickness*density
 end
 
 function prolate_spheroid_lift(a, c, thickness, density, liftgas = HydrogenMass, displaced_gas_mas = AirMass)
-    V = Volume.ellipsoid_volume(a, a, c)
-    A = Volume.prolate_spheroid_area(a, c)
+    V = ellipsoid_volume(a, a, c)
+    A = prolate_spheroid_area(a, c)
     l = lift(V, liftgas, displaced_gas_mas)
-    l -  A*thickness*density
+    l - A*thickness*density
 end
 
 function sphere_lift(radius, thickness, density, liftgas = HeliumMass, displaced_gas_mas = AirMass)
-    V = Volume.sphere_volume(radius)
-    A = Volume.sphere_area(radius)
+    V = sphere_volume(radius)
+    A = sphere_area(radius)
     l = lift(V, liftgas, displaced_gas_mas)
-    l -  A*thickness*density
+    l - A*thickness*density
 end
