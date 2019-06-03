@@ -1,5 +1,5 @@
 import Base: +, -, *, convert, promote_rule, isapprox
-export Temperature, Kelvin, Fahrenheit, Celsius
+export Temperature, Kelvin, Fahrenheit, Celsius, °C, °F, K
 
 abstract type Temperature end
 
