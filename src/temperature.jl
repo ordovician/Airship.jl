@@ -25,7 +25,7 @@ convert(::Type{Kelvin},  fahrenheit::Fahrenheit)  = Kelvin(Celsius(fahrenheit))
 convert(::Type{Celsius}, kelvin::Kelvin)          = Celsius(kelvin.value - 273.15)
 convert(::Type{Celsius}, fahrenheit::Fahrenheit)  = Celsius((fahrenheit.value - 32)*5/9)
 convert(::Type{Fahrenheit}, celsius::Celsius)     = Fahrenheit(celsius.value*9/5 + 32)
-convert(::Type{Fahrenheit}, kelvin::Kelvin)       = Fahrenheit(Celius(kelvin))
+convert(::Type{Fahrenheit}, kelvin::Kelvin)       = Fahrenheit(Celsius(kelvin))
 
 promote_rule(::Type{Kelvin},     ::Type{Celsius}) = Kelvin
 promote_rule(::Type{Fahrenheit}, ::Type{Celsius}) = Celsius
