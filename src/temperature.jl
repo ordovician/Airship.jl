@@ -31,10 +31,9 @@ promote_rule(::Type{Kelvin},     ::Type{Celsius}) = Kelvin
 promote_rule(::Type{Fahrenheit}, ::Type{Celsius}) = Celsius
 promote_rule(::Type{Fahrenheit}, ::Type{Kelvin})  = Kelvin
 
-Kelvin(celsius::Celsius)         = convert(Kelvin,  celsius)
-Celsius(kelvin::Kelvin)          = convert(Celsius, kelvin)
-Celsius(fahrenheit::Fahrenheit)  = convert(Celsius, fahrenheit)
-Fahrenheit(celsius::Celsius)     = convert(Fahrenheit, celsius) 
+Kelvin(t::Temperature)      = convert(Kelvin, t)
+Celsius(t::Temperature)     = convert(Celsius, t)
+Fahrenheit(t::Temperature)  = convert(Fahrenheit, t) 
 
 +(x::Temperature, y::Temperature) = +(promote(x,y)...)
 -(x::Temperature, y::Temperature) = -(promote(x,y)...)
